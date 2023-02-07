@@ -1,1 +1,1 @@
-# Project Zomboid Mod: Simple Gamepad Confirmation
+# Project Zomboid Mod: Accessible Gamepad Confirmation
