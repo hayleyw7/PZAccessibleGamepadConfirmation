@@ -2,8 +2,14 @@ function ISJoypadListBox:fill()
 	local listBox = self
 	listBox:clear()
 	listBox:setScrollHeight(0)
+
+	-- code changed below
+
     local width = getTextManager():MeasureStringX(UIFont.Massive, getText("IGUI_Controller_TakeOverPlayer", i)) + 20
     listBox.javaObject:setWidth(width)
+
+	-- code changed above
+
 	for i=1,getMaxActivePlayers() do
 		local playerObj = getSpecificPlayer(i-1)
 		if JoypadState.players[i] == nil and playerObj and playerObj:isAlive() then
