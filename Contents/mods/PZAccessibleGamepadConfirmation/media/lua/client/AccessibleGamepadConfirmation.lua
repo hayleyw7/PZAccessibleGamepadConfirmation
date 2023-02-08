@@ -2,14 +2,6 @@ function ISJoypadListBox:fill()
 	local listBox = self
 	listBox:clear()
 	listBox:setScrollHeight(0)
-
-	-- code changed below
-
-    local width = getTextManager():MeasureStringX(UIFont.Massive, getText("IGUI_Controller_TakeOverPlayer", i)) + 20
-    listBox.javaObject:setWidth(width)
-
-	-- code changed above
-
 	for i=1,getMaxActivePlayers() do
 		local playerObj = getSpecificPlayer(i-1)
 		if JoypadState.players[i] == nil and playerObj and playerObj:isAlive() then
@@ -54,5 +46,36 @@ function ISJoypadListBox:fill()
 	end
 	listBox:addItem(getText("UI_Cancel"), { cmd = "cancel" })
 	listBox.selected = 1
-	listBox:setHeight(math.min(listBox:getScrollHeight(), getCore():getScreenHeight()))
+
+	--------------------------------------------------
+	-- code changed below
+	--------------------------------------------------
+
+	-- declare size variables
+
+    local width = getTextManager():MeasureStringX(UIFont.Massive, getText("IGUI_Controller_TakeOverPlayer", i)) + 20
+
+	local height = math.min(listBox:getScrollHeight(), getCore():getScreenHeight())
+
+	-- set size
+
+	listBox:setWidth(width)
+	listBox:setHeight(height)
+
+	-- set coordinates
+
+	self:setX(
+		(getCore():getScreenWidth() / 2) -
+		(width / 2)
+	)
+
+	self:setY(
+		(getCore():getScreenHeight() / 2) -
+		(height / 2)
+	)
+
+	--------------------------------------------------
+	-- code changed above 
+	--------------------------------------------------
+
 end
